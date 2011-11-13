@@ -6,10 +6,10 @@ It is a clone of the <a href="https://github.com/juuso/BozoCrack">BozoCrack</a> 
 ## How?
 ### Principle
 The tasks executed by **bzc** are the following:
-1. Use the <a href="http://pypi.python.org/pypi/requests/0.5.1">requests</a> Python module to get contents of a Google Search page (searching for the hash)
-2. Split the output into a list. Each word has one entry into the list.
-3. Iterate into the list: Get the MD5 hex digest for each word and compare the hash output with the desired comparison hash.
-4. If the MD5 hash of an element of the list matches the one specified on the command-line argument, the program prints the word and exits.
+* 1. Use the <a href="http://pypi.python.org/pypi/requests/0.5.1">requests</a> Python module to get contents of a Google Search page (searching for the hash)
+* 2. Split the output into a list. Each word has one entry into the list.
+* 3. Iterate into the list: Get the MD5 hex digest for each word and compare the hash output with the desired comparison hash.
+* 4. If the MD5 hash of an element of the list matches the one specified on the command-line argument, the program prints the word and exits.
 
 ### Basic usage
 `$ bzc <hash / file>`
