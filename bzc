@@ -8,7 +8,11 @@ from sys import argv
 
 def crackHash(h):
 	r = get('http://google.com/search?q=%s' % h).content
-	for e in r.split(' '):
+	
+	try: useful = r[r.index('<ol>'):r.index('</ol>')]
+	except ValueError: useful = r
+	
+	for e in useful.split(' '):
 		m = md5()
 		m.update(e.encode('utf-8'))
 	
