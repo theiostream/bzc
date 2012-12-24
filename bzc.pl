@@ -8,7 +8,7 @@ use Digest::MD5 qw(md5_hex);
 use LWP::UserAgent;
 use JSON qw(from_json);
 
-my $md5 = $ARGV[0];
+my $md5 = $ARGV[0] or die("Usage: bzc.pl <md5 hex>");
 
 ## DEPRECATED API! -- Fuck Google.
 my $ua = LWP::UserAgent->new();
@@ -22,16 +22,18 @@ foreach my $result (@results) {
 	my @title = split($pattern, $result->{"title"});
 	my @content = split($pattern, $result->{"content"});
 	
-	foreach (@title) {
-		if (md5_hex($_) eq $md5) {
-			print $md5.": ".$_."\n";
-			exit 0;
-		}
-	}
-	foreach (@content) {
-		if (md5_hex($_) eq $md5) {
-			print $md5.": ".$_."\n";
-			exit 0;
-		}
+	bzc_check($_, $md5) foreach (@title);
+	bzc_check($_, $md5) foreach (@content);
+	
+	print "Did not find any matches.\n";
+	exit 1;
+}
+
+sub bzc_check {
+	my $str = shift;
+	my $hex = shift;
+	if (md5_hex($str) eq $hex) {
+		print $md5.": ".$_."\n";
+		exit 0;
 	}
 }
