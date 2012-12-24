@@ -1,0 +1,3 @@
+Depressingly effective MD5 cracker which googles for MD5 hashes and hopes the result is in the first results page, based on juuso/BozoCrack and the former Python version of bzc (found at the python-deprecated branch).
+
+Written in Perl, it uses the efficient Google Search API which provides way faster results. Yet unlike BozoCrack it does not cache stuff.
